@@ -1,0 +1,15 @@
+BookingTickets/bin/
+BookingTickets/.idea/
+BookingTickets/.eslintrc*
+BookingTickets/package-lock.json
+BookingTickets/obj/
+BookingTickets/wwwroot/dist/
+BookingTickets/node_modules/
+BookingTickets.EFCore/bin/
+BookingTickets.EFCore/obj/
+BookingTickets.Fake/bin/
+BookingTickets.Fake/obj/
+BookingTickets.Tests/bin/
+BookingTickets.Tests/obj/
+.vs/
+TestResults/
