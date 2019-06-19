@@ -3,10 +3,14 @@
 
 #include "pch.h"
 #include <iostream>
+#include "../Calculator/Lexer.h"
 
+using namespace MathCalculator;
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	Lexer lexer;
+	auto tokens = lexer.GetTokens("(231+ 2)-3");
+	int a = 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
