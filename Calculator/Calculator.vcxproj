@@ -147,14 +147,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BracketReader.h" />
     <ClInclude Include="Calculator.h" />
+    <ClInclude Include="ITokenReader.h" />
     <ClInclude Include="Lexer.h" />
+    <ClInclude Include="ResultValue.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="TokenType.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BracketReader.cpp" />
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

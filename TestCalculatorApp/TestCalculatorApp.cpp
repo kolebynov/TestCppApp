@@ -4,11 +4,18 @@
 #include "pch.h"
 #include <iostream>
 #include "../Calculator/Lexer.h"
+#include "../Calculator/BracketReader.h"
 
 using namespace MathCalculator;
 int main()
 {
 	Lexer lexer;
+	BracketReader reader;
+	std::istringstream s("(+-0(");
+	auto res = reader.TryReadToken(s);
+	res.success = false;
+	char t;
+	s >> t;
 	auto tokens = lexer.GetTokens("(231+ 2)-3");
 	int a = 0;
 }
