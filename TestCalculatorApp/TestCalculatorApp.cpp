@@ -7,13 +7,14 @@
 #include "../Calculator/BracketReader.h"
 
 using namespace MathCalculator;
+using namespace MathCalculator::Lexer;
+
 int main()
 {
-	Lexer lexer;
+	MathCalculator::Lexer::Lexer lexer;
 	BracketReader reader;
 	std::istringstream s("(+-0(");
 	auto res = reader.TryReadToken(s);
-	res.success = false;
 	char t;
 	s >> t;
 	auto tokens = lexer.GetTokens("(231+ 2)-3");

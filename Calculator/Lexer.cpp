@@ -2,7 +2,7 @@
 #include "Lexer.h"
 
 using namespace std;
-namespace MathCalculator
+namespace MathCalculator::Lexer
 {
 	vector<Token> Lexer::GetTokens(const string & srcString)
 	{

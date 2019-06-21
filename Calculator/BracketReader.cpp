@@ -4,7 +4,7 @@
 
 using namespace std;
 
-namespace MathCalculator
+namespace MathCalculator::Lexer
 {
 	ResultValue<Token> BracketReader::TryReadToken(istringstream& src)
 	{

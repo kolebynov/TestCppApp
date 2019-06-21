@@ -1,6 +1,6 @@
 #pragma once
 
-namespace MathCalculator
+namespace MathCalculator::Lexer
 {
 	enum class TokenType
 	{

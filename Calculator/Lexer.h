@@ -2,7 +2,7 @@
 #include "Token.h"
 #include <vector>
 
-namespace MathCalculator
+namespace MathCalculator::Lexer
 {
 	class Lexer
 	{

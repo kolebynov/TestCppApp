@@ -1,9 +1,9 @@
 #pragma once
 #include "ITokenReader.h"
 
-namespace MathCalculator
+namespace MathCalculator::Lexer
 {
-	class BracketReader : public ITokenReader
+	class BracketReader : public Abstractions::ITokenReader
 	{
 	public:
 		ResultValue<Token> TryReadToken(std::istringstream& src);

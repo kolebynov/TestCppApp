@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Token.h"
 
-namespace MathCalculator
+namespace MathCalculator::Lexer
 {
 	Token::Token()
 	{
