@@ -2,56 +2,45 @@
 #include "Lexer.h"
 
 using namespace std;
+using namespace MathCalculator::Lexer::Abstractions;
 namespace MathCalculator::Lexer
 {
+	Lexer::Lexer(const std::vector<Abstractions::ITokenReader*>& tokenReaders,
+		Abstractions::ITokenReader* whitespaceTokenReader)
+	{
+		_tokenReaders = tokenReaders;
+		_whitespaceTokenReader = whitespaceTokenReader;
+	}
+
 	vector<Token> Lexer::GetTokens(const string & srcString)
 	{
-		vector<Token> result;
-		
-		string currentNumber;
-		bool isNumber = false;
-		for (int pos = 0; pos < srcString.length(); ++pos)
+		vector<Token> tokens;
+		istringstream iss(srcString);
+
+		while (iss.tellg() != static_cast<int32_t>(string::npos))
 		{
-			char ch = srcString[pos];
+			ResultValue<Token> res;
 
-			if (Digits.find(ch) != string::npos)
+			for (ITokenReader* reader : _tokenReaders)
 			{
-				if (!isNumber)
+				res = reader->TryReadToken(iss);
+				if (res.success)
 				{
-					currentNumber.clear();
+					tokens.push_back(res.value);
+					break;
 				}
-
-				currentNumber.append(1, ch);
-				isNumber = true;
-				continue;
 			}
 
-			if (isNumber)
+			if (!res.success)
 			{
-				result.push_back(Token(TokenType::Number, currentNumber));
-				isNumber = false;
+				res = _whitespaceTokenReader->TryReadToken(iss);
+				if (!res.success)
+				{
+					throw exception(("Unexpected character '" + string(1, (char)iss.peek()) + "' at position '" + to_string(iss.tellg()) + "'").c_str());
+				}
 			}
-
-			if (Brackets.find(ch) != string::npos)
-			{
-				result.push_back(Token(TokenType::Bracket, string(1, ch)));
-				continue;
-			}
-
-			if (Operators.find(ch) != string::npos)
-			{
-				result.push_back(Token(TokenType::Operator, string(1, ch)));
-				continue;
-			}
-
-			if (Whitespaces.find(ch) != string::npos)
-			{
-				continue;
-			}
-
-			throw exception(("Unexpected character '" + string(1, ch) + "' at position '" + to_string(pos) + "'").c_str());
 		}
 
-		return result;
+		return tokens;
 	}
 }

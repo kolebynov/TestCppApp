@@ -4,19 +4,20 @@
 #include "pch.h"
 #include <iostream>
 #include "../Calculator/Lexer.h"
-#include "../Calculator/BracketReader.h"
+#include "../Calculator/AllowedCharsTokenReader.h"
 
+using namespace std;
 using namespace MathCalculator;
 using namespace MathCalculator::Lexer;
+using namespace MathCalculator::Lexer::Abstractions;
 
 int main()
 {
-	MathCalculator::Lexer::Lexer lexer;
-	BracketReader reader;
-	std::istringstream s("(+-0(");
-	auto res = reader.TryReadToken(s);
-	char t;
-	s >> t;
+	vector<ITokenReader*> readers;
+	readers.push_back(new AllowedCharsTokenReader("()", TokenType::Bracket, 1));
+	readers.push_back(new AllowedCharsTokenReader("+-/*", TokenType::Operator, 1));
+	readers.push_back(new AllowedCharsTokenReader("1234567890", TokenType::Number, numeric_limits<uint32_t>::max()));
+	MathCalculator::Lexer::Lexer lexer(readers, new AllowedCharsTokenReader(" ", TokenType::Whitespace, numeric_limits<uint32_t>::max()));
 	auto tokens = lexer.GetTokens("(231+ 2)-3");
 	int a = 0;
 }

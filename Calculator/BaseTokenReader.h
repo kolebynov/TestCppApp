@@ -14,7 +14,7 @@ namespace MathCalculator::Lexer
 	protected:
 		virtual CharProcessResult ProcessChar(char ch, TokenReadingContext& context) = 0;
 
-	private:
+	protected:
 		struct TokenReadingContext
 		{
 		public:
@@ -25,9 +25,10 @@ namespace MathCalculator::Lexer
 
 		enum class CharProcessResult
 		{
-			NotTokenChar,
-			TokenChar,
-			TokenReaded
+			NotToken,
+			CharReaded,
+			TokenReaded,
+			TokenReadedWithoutLastChar
 		};
 	};
 }

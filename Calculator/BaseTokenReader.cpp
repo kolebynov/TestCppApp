@@ -11,22 +11,31 @@ namespace MathCalculator::Lexer
 
 		while (true)
 		{
-			char ch = (char)src.get();
+			char ch = src.get();
 
 			TokenReadingContext context { charNumber, currentValue };
 			CharProcessResult charProcessResult = ProcessChar(ch, context);
 
 			switch (charProcessResult)
 			{
-			case CharProcessResult::NotTokenChar:
-				src.seekg(src.tellg() - (streampos)charNumber - 1);
+			case CharProcessResult::NotToken:
+				src.seekg(src.tellg() - static_cast<streampos>(charNumber) - 1);
 				return ResultValue<Token> { false, Token() };
-			case CharProcessResult::TokenChar:
+
+			case CharProcessResult::CharReaded:
 				currentValue.append(1, ch);
 				break;
+
 			case CharProcessResult::TokenReaded:
+			case CharProcessResult::TokenReadedWithoutLastChar:
+				if (charProcessResult == CharProcessResult::TokenReadedWithoutLastChar)
+				{
+					src.seekg(src.tellg() - static_cast<streampos>(1));
+				}
 				return ResultValue<Token> { true, context.token };
 			}
-		} 
+
+			charNumber++;
+		}
 	}
 }

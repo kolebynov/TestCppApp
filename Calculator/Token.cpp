@@ -7,7 +7,7 @@ namespace MathCalculator::Lexer
 	{
 	}
 
-	Token::Token(TokenType type, std::string value)
+	Token::Token(TokenType type, const std::string& value)
 	{
 		_type = type;
 		_value = value;

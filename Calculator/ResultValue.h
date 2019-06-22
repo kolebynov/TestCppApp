@@ -5,7 +5,7 @@ namespace MathCalculator
 	template <class T>
 	struct ResultValue
 	{
-		const bool success;
-		const T value;
+		bool success;
+		T value;
 	};
 }

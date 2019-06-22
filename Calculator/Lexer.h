@@ -1,5 +1,6 @@
 #pragma once
 #include "Token.h"
+#include "ITokenReader.h"
 #include <vector>
 
 namespace MathCalculator::Lexer
@@ -7,12 +8,12 @@ namespace MathCalculator::Lexer
 	class Lexer
 	{
 	public:
+		Lexer(const std::vector<Abstractions::ITokenReader*>& tokenReaders, Abstractions::ITokenReader* whitespaceTokenReader);
+
 		std::vector<Token> GetTokens(const std::string& srcString);
 
 	private:
-		const std::string Operators = "+-/*";
-		const std::string Brackets = "()";
-		const std::string Whitespaces = " ";
-		const std::string Digits = "1234567890";
+		std::vector<Abstractions::ITokenReader*> _tokenReaders;
+		Abstractions::ITokenReader* _whitespaceTokenReader;
 	};
 }

@@ -6,6 +6,7 @@ namespace MathCalculator::Lexer
 	{
 		Bracket,
 		Number,
-		Operator
+		Operator,
+		Whitespace
 	};
 }
