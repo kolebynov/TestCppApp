@@ -8,16 +8,18 @@
 
 using namespace std;
 using namespace MathCalculator;
-using namespace MathCalculator::Lexer;
-using namespace MathCalculator::Lexer::Abstractions;
+using namespace MathCalculator::Lexical;
+using namespace MathCalculator::Lexical::Abstractions;
 
 int main()
 {
-	vector<ITokenReader*> readers;
-	readers.push_back(new AllowedCharsTokenReader("()", TokenType::Bracket, 1));
-	readers.push_back(new AllowedCharsTokenReader("+-/*", TokenType::Operator, 1));
-	readers.push_back(new AllowedCharsTokenReader("1234567890", TokenType::Number, numeric_limits<uint32_t>::max()));
-	MathCalculator::Lexer::Lexer lexer(readers, new AllowedCharsTokenReader(" ", TokenType::Whitespace, numeric_limits<uint32_t>::max()));
+	vector<shared_ptr<ITokenReader>> readers
+	{
+		make_shared<AllowedCharsTokenReader>("()", TokenType::Bracket, 1),
+		make_shared<AllowedCharsTokenReader>("+-/*", TokenType::Operator, 1),
+		make_shared<AllowedCharsTokenReader>("1234567890", TokenType::Number, numeric_limits<uint32_t>::max())
+	};
+	Lexer lexer(readers, make_shared<AllowedCharsTokenReader>(" ", TokenType::Whitespace, numeric_limits<uint32_t>::max()));
 	auto tokens = lexer.GetTokens("(231+ 2)-3");
 	int a = 0;
 }

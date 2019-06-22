@@ -3,7 +3,7 @@
 #include "ResultValue.h"
 #include <sstream>
 
-namespace MathCalculator::Lexer::Abstractions
+namespace MathCalculator::Lexical::Abstractions
 {
 	class ITokenReader
 	{

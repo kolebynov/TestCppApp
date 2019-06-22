@@ -2,7 +2,7 @@
 #include "BaseTokenReader.h"
 
 using namespace std;
-namespace MathCalculator::Lexer
+namespace MathCalculator::Lexical
 {
 	ResultValue<Token> BaseTokenReader::TryReadToken(istringstream & src)
 	{

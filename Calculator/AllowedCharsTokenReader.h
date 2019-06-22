@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseTokenReader.h"
 
-namespace MathCalculator::Lexer
+namespace MathCalculator::Lexical
 {
 	class AllowedCharsTokenReader : public BaseTokenReader
 	{

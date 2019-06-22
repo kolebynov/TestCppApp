@@ -1,7 +1,7 @@
 #pragma once
 #include "ITokenReader.h"
 
-namespace MathCalculator::Lexer
+namespace MathCalculator::Lexical
 {
 	class BaseTokenReader : public Abstractions::ITokenReader
 	{

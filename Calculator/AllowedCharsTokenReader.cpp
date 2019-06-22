@@ -2,7 +2,7 @@
 #include "AllowedCharsTokenReader.h"
 
 using namespace std;
-namespace MathCalculator::Lexer
+namespace MathCalculator::Lexical
 {
 	AllowedCharsTokenReader::AllowedCharsTokenReader(const string & allowedChars, TokenType tokenType, uint32_t maxChars)
 	{

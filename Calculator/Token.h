@@ -2,7 +2,7 @@
 #include "TokenType.h"
 #include <string>
 
-namespace MathCalculator::Lexer
+namespace MathCalculator::Lexical
 {
 	class Token
 	{
